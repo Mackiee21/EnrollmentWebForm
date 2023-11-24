@@ -27,8 +27,9 @@ app.get("/student", async (req, res) => {
         console.log("error " + error)
     }
 })
+const port = process.env.PORT || 3000
 connectDb().then(() => {
-    app.listen(3000, () => {
+    app.listen(port, () => {
         console.log("server is up and running")
     })
 })
