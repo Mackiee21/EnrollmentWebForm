@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Nosifer&family=Raleway:wght@200;400;500;600&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+html{
+    scroll-behavior: smooth;
+}
+body{
+    font-family:'Raleway', sans-serif;
+}
+.nav-header ul li{
+    padding: 0.3rem .8rem;
+    border-radius: 0.2rem;
+    outline: none;
+    border: none;
+    transition: all .10s ease-in;
+    letter-spacing: 0.1ch;
+}
+.nav-header ul li:hover{
+    
+}
