@@ -1,8 +1,10 @@
 const express = require("express")
 const mssql = require("mssql")
 const cors = require("cors")
+const path = require("path")
 
-const connectionString = 'Server=tcp:enrollmentwebformdbserver.database.windows.net,1433;Initial Catalog=PandacDB;Persist Security Info=False;User ID=MackieeAdmin;Password=Pandac_21Admin;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;'
+const conneString = process.env.NODE_ENV === "prod" ? process.env.conneString : require('./devs/dev').serverUrl
+const connectionString = conneString //completely unnecesary mak hehe
 const connectDb = async () => {
     try {
        await mssql.connect(connectionString)
@@ -12,8 +14,12 @@ const connectDb = async () => {
     }
 }
 const app = express()
-
+//arrangement matters ata mak 
 app.use(cors())
+app.use(express.json())
+app.use(express.urlencoded({extended: false}))
+
+
 app.use(express.static(path.join(__dirname, "client", "dist")));
 
 app.get("/student", async (req, res) => {
