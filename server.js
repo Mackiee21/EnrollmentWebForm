@@ -14,7 +14,7 @@ const connectDb = async () => {
 const app = express()
 
 app.use(cors())
-
+app.use(express.static(path.join(__dirname, "client", "dist")));
 
 app.get("/student", async (req, res) => {
     try {
@@ -27,6 +27,9 @@ app.get("/student", async (req, res) => {
         console.log("error " + error)
     }
 })
+app.get("*", (_, res) => {
+    res.sendFile(path.join(__dirname, "../client/dist/index.html"))
+  });
 const port = process.env.PORT || 3000
 connectDb().then(() => {
     app.listen(port, () => {
