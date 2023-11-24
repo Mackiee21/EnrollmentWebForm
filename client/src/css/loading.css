@@ -2,7 +2,7 @@
     height: 15px;
     width: 5px;
     border-radius: 0.1rem;
-    background-color: grey;
+    background-color: #077acc;
 }
 .div1{
     animation: grow 0.8s linear infinite;

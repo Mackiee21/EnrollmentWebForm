@@ -1,14 +1,15 @@
 import { forwardRef } from 'react';
-import { LogOut } from 'lucide-react'
+import { LogOut, LucideFolderSymlink } from 'lucide-react'
 import Button from '../reusable/Button';
 
 function NavBar(_, ref){
     const classes = "shadow-md shadow-header/50 bg-header text-white";
     return(
-        <div ref={ref} className="flex align-center justify-between py-3 px-5 sticky top-0 z-50 
+        <div ref={ref} className="flex align-center bg-zinc-50 justify-between py-3 px-5 sticky top-0 z-50 
         border-b-2">
-            <div className="hero font-bold text-xl uppercase tracking-widest">
-                Mackiee
+            <div className="hero font-bold text-xl uppercase tracking-widest flex items-center gap-2">
+                <LucideFolderSymlink size={20} />
+                Enrollment Web
             </div>
            <nav className='nav-header flex gap-2 items-center'>
                 <ul className="flex text-sm font-semibold gap-5">

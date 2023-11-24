@@ -1,5 +1,6 @@
 import { Plus, LucideArrowDownSquare } from 'lucide-react'
 import Button from './Button';
+import { Link } from 'react-router-dom'
 
 function Header({title, filterBy}){
     const classes = "focus:outline-none focus:ring focus:ring-main ";
@@ -16,7 +17,8 @@ function Header({title, filterBy}){
                     <LucideArrowDownSquare size={18} color="grey" className="absolute right-2 top-[28%]" />
                    
             </label>
-            <Button text="Add" icon={<Plus size={18} />} />
+            
+            <Link to="/add"><Button text="Add" icon={<Plus size={18} />} /></Link>
             {/* <button className="ms-2 flex gap-1 items-center bg-main py-1.5 px-4 text-white text-sm tracking-wide font-semibold border-solid border-2 border-main rounded-full">Add<Plus size={20} /></button> */}
            </div>
         </div>

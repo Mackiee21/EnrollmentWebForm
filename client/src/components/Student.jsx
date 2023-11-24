@@ -1,6 +1,6 @@
 import Header from '../reusable/Header'
 import Loading from '../reusable/Loading'
-import Button from '../reusable/Button'
+import NOData from '../reusable/NoData'
 import { Trash2, Edit } from 'lucide-react'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
@@ -30,7 +30,8 @@ function Student(){
             <Header title="Students" filterBy={filterBy} />
             <div className=''>
                 { fetching && <Loading /> }
-                { !fetching && <table className="table-auto w-full">
+               { !fetching &&  students.length === 0 &&  <NOData /> }
+                { !fetching && students.length > 0 && <table className="table-auto w-full">
                     <thead className=''>
                         <tr className='border-b-2 bg-zinc-100'>
                             <th className='py-2.5 px-3 text-start'>ID Number</th>
@@ -44,7 +45,7 @@ function Student(){
                             <td className='px-3 text-start'></td>
                         </tr>
                     </thead>
-                    <tbody className='border border-gray-300'>
+                    <tbody className='border border-gray-300 text-xsm'>
                         {students.map(student => {
                             return(
                                 <tr className='text-start border-b border-gray-300' key={student.StudentIDNumber}>

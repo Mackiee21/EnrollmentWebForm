@@ -12,6 +12,9 @@ export default {
       },
       padding:{
         'content': '16.666667%'
+      },
+      fontSize:{
+        xsm: "15px"
       }
     },
   },
