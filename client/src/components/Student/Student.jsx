@@ -45,7 +45,7 @@ function Student(){
     return(
         <div className='w-full px-3'>
             <Header title="Students" filterBy={filterBy} handleRefresh={handleRefresh} fetching={fetching} />
-            {!errorFetching && <div>
+            {!errorFetching && <div className='overflow-x-auto'>
                 { fetching && <Loading /> }
                { !fetching &&  students.length === 0 &&  <NOData /> }
                 { !fetching && students.length > 0 && <table className="table-auto w-full">

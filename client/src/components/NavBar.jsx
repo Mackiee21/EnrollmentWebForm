@@ -17,7 +17,7 @@ function NavBar(_, ref){
                     <li className="cursor-pointer">About</li>
                     <li className="cursor-pointer">Contact</li>
                 </ul>
-                <Button text="Logout" icon={<LogOut size={18} />} />
+                <Button text="Logout" className="bg-main" icon={<LogOut size={18} />} />
                 {/* <button className='rounded-full py-2 px-4 bg-main text-white font-semibold text-sm tracking-wide'>Logout</button> */}
            </nav>
         </div>

@@ -17,17 +17,15 @@ function Header({title, filterBy, handleRefresh, fetching}){
                     <RefreshCwIcon size={16} />
                     Refresh
                 </button>
-            <label className="text-base tracking-wide relative">Filter By: 
-                <select className="ms-2 text-base font-normal py-1.5 ps-3 pe-9 rounded cursor-pointer border-solid border-2 appearance-none">
+            <label className="text-base tracking-wide">Filter By: 
+                <select className="from-select ms-2 border text-base font-normal py-1.5 ps-3 pe-9 rounded cursor-pointer focus:outline-none focus:bg-outline-main">
                         {filterBy.map((filt, i) => {
                             return <option key={i}>{filt}</option>
                         })}
-                    </select>
-                    <LucideArrowDownSquare size={18} color="gray" className="absolute right-2 top-[28%]" />
-                   
+                    </select>               
             </label>
             
-            <Link to={'/students/add'}><Button text="Add" icon={<Plus size={18} />} /></Link>
+            <Link to={'/students/add'}><Button text="Add" className="bg-main" icon={<Plus size={18} />} /></Link>
             {/* <button className="ms-2 flex gap-1 items-center bg-main py-1.5 px-4 text-white text-sm tracking-wide font-semibold border-solid border-2 border-main rounded-full">Add<Plus size={20} /></button> */}
            </div>
         </div>

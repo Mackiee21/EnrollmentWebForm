@@ -10,6 +10,11 @@ html{
 body{
     font-family:'Raleway', sans-serif;
 }
+/* ::-webkit-scrollbar{
+    width: 0.6rem;
+    border-radius: 0.3rem;
+    background-color: #077acc;
+} */
 .nav-header ul li{
     padding: 0.3rem .8rem;
     border-radius: 0.2rem;

@@ -8,6 +8,9 @@ export default defineConfig({
     proxy: {
       "/student": {
         target: "http://127.0.0.1:3000/"
+      },
+      "/addStudent": {
+        target: "http://127.0.0.1:3000/"
       }
     },
   }
