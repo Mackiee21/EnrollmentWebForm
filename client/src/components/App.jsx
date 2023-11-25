@@ -1,5 +1,5 @@
 import Student from './Student/Student';
-import StudentForm from './Student/StudentForm'
+import AddStudent from './Student/AddStudent'
 import Sidebar from './Sidebar';
 import NavBar from './NavBar';
 import Home from './Home'
@@ -31,7 +31,7 @@ function App(){
                     },
                     {
                         path: 'students/add',
-                        element: <StudentForm />
+                        element: <AddStudent />
                     },
                     {
                         path: 'subjects',

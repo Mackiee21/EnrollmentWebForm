@@ -2,7 +2,7 @@ import { Plus, LucideArrowDownSquare, UserCheck, RefreshCwIcon } from 'lucide-re
 import Button from './Button';
 import { Link } from 'react-router-dom'
 
-function Header({title, filterBy, handleRefresh}){
+function Header({title, filterBy, handleRefresh, fetching}){
     const classes = "focus:outline-none focus:ring focus:ring-main ";
     return(
         <div className="flex items-center justify-between w-full p-3 pb-1 me-5 mb-2">
@@ -13,7 +13,7 @@ function Header({title, filterBy, handleRefresh}){
                 </div>
             </div>
            <div className='flex gap-3'>
-           <button onClick={handleRefresh} className='flex items-center focus:outline-none hover:text-main text-base gap-1 cursor-pointer'>
+           <button disabled={fetching} onClick={handleRefresh} className='flex items-center focus:outline-none hover:text-main text-base gap-1 cursor-pointer'>
                     <RefreshCwIcon size={16} />
                     Refresh
                 </button>

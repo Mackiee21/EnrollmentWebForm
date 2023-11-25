@@ -1,13 +1,15 @@
 import Header from '../../reusable/Header'
 import Loading from '../../reusable/Loading'
 import NOData from '../../reusable/NoData'
+import Retry from '../../reusable/Retry'
 import { Trash2, Edit } from 'lucide-react'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 
 function Student(){
     const [students, setStudents] = useState([])
-    const [fetching, setFetching] = useState(false);
+    const [fetching, setFetching] = useState(false)
+    const [errorFetching, setErrorFetching] = useState(false)
 
     useEffect(() => {
         getStudents();
@@ -15,13 +17,24 @@ function Student(){
 
     const getStudents = async() => {
       try {
+        setErrorFetching(false)
         setFetching(true);
+        if(!navigator.onLine) {
+            setErrorFetching(true) 
+            return;
+        }
         const response = await axios.get("/student");
+        setErrorFetching(false)
+        if(response.status !== 200){
+            alert("haa?")
+            return
+        }
         setStudents(response.data);
         setFetching(false)
         // console.log(students)
       } catch (error) {
         console.log(error)
+        setErrorFetching(true);
       }
     }
 
@@ -31,8 +44,8 @@ function Student(){
     const filterBy = ['All', 'BSIT', 'BSIS', 'BSN', 'BSCPE']
     return(
         <div className='w-full px-3'>
-            <Header title="Students" filterBy={filterBy} handleRefresh={handleRefresh} />
-            <div className=''>
+            <Header title="Students" filterBy={filterBy} handleRefresh={handleRefresh} fetching={fetching} />
+            {!errorFetching && <div>
                 { fetching && <Loading /> }
                { !fetching &&  students.length === 0 &&  <NOData /> }
                 { !fetching && students.length > 0 && <table className="table-auto w-full">
@@ -70,7 +83,8 @@ function Student(){
                         })}
                     </tbody>
                 </table> } 
-            </div>
+            </div>}
+            {errorFetching && <Retry onRetry={handleRefresh}/>}
         </div>
     );
 }
