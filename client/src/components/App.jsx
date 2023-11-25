@@ -1,10 +1,12 @@
-import Student from './Student';
-import StudentForm from './StudentForm'
+import Student from './Student/Student';
+import StudentForm from './Student/StudentForm'
 import Sidebar from './Sidebar';
 import NavBar from './NavBar';
+import Home from './Home'
 import { useRef, useEffect, useState } from 'react';
 import { createBrowserRouter, createRoutesFromElements, RouterProvider, Route, Link, Outlet} from 'react-router-dom'
 import ErrorPage from '../reusable/errorPage';
+import Subject from './Subject/Subject';
 function App(){
    const navBarRef = useRef(null);
 
@@ -12,14 +14,32 @@ function App(){
     const getNavHeight = () => {
         return navBarRef.current.clientHeight;
     }
-    const router = createBrowserRouter(
-        createRoutesFromElements(
-            <Route path='/' element={<Rootables mTop={mTop} />}>
-                <Route index element={<Student />}></Route>
-                <Route path='/add' element={<StudentForm />}></Route>
-                <Route path="/" element={<ErrorPage />}></Route>
-            </Route>
-        )
+    const router = createBrowserRouter([
+            {
+                path: '/',
+                element: <Rootables mTop={mTop} />,
+                errorElement: <ErrorPage />,
+                children:[
+                    {
+                        index: true,
+                        element: <Home />
+                    },
+                    {
+                        path: 'students',
+                        element: <Student />,
+                    
+                    },
+                    {
+                        path: 'students/add',
+                        element: <StudentForm />
+                    },
+                    {
+                        path: 'subjects',
+                        element: <Subject />
+                    }
+                ]
+            }
+        ]
     )
 
     useEffect(() => {

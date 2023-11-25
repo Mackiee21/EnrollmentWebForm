@@ -1,6 +1,6 @@
-import Header from '../reusable/Header'
-import Loading from '../reusable/Loading'
-import NOData from '../reusable/NoData'
+import Header from '../../reusable/Header'
+import Loading from '../../reusable/Loading'
+import NOData from '../../reusable/NoData'
 import { Trash2, Edit } from 'lucide-react'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
@@ -24,16 +24,20 @@ function Student(){
         console.log(error)
       }
     }
+
+    const handleRefresh = () => {
+        getStudents(); //wow works on the first try man dayon mak hahahah
+    }
     const filterBy = ['All', 'BSIT', 'BSIS', 'BSN', 'BSCPE']
     return(
         <div className='w-full px-3'>
-            <Header title="Students" filterBy={filterBy} />
+            <Header title="Students" filterBy={filterBy} handleRefresh={handleRefresh} />
             <div className=''>
                 { fetching && <Loading /> }
                { !fetching &&  students.length === 0 &&  <NOData /> }
                 { !fetching && students.length > 0 && <table className="table-auto w-full">
                     <thead className=''>
-                        <tr className='border-b-2 bg-zinc-100'>
+                        <tr className='border-b-2 bg-zinc-100 text-xsm'>
                             <th className='py-2.5 px-3 text-start'>ID Number</th>
                             <th className='px-3 text-start'>Firstname</th>
                             <th className='px-3 text-start'>Middle Name</th>
