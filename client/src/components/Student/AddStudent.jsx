@@ -10,6 +10,7 @@ function AddStudent(){
     const [duplicate, setDuplicate] = useState(false)
     const [isValid, setIsValid] = useState(true)
     const [errorFetching, setErrorFetching] = useState(false)
+    const [failed, setFailed] = useState(false)
     const [data, setData] = useState({
         Course: "BSIT",
         MiddleName: "",
@@ -30,7 +31,7 @@ function AddStudent(){
             }else if(response.data.success){
                     navigate(response.data.redirectTo) //return user to students index view if sa eldnet pa
             }else{
-                console.log(response)
+                setFailed(true)
             }
        } catch (error) {
             setErrorFetching(true)
@@ -72,7 +73,7 @@ function AddStudent(){
     }
     return(
         <div className="flex justify-center relative">
-           {!errorFetching && <div className='flex justify-center relative w-full'>
+           {!errorFetching && !failed && <div className='flex justify-center relative w-full'>
                 <div className='w-8/12 mt-3 py-7 px-9 border border-gray-300 rounded-md shadow ms-2 shadow-sinc-300'>
                     <form method="post">
                         <div className='grid grid-cols-3'>
@@ -141,6 +142,7 @@ function AddStudent(){
                 {duplicate && <MessageBox message="Duplicate Entry" header="Error" handleClose={handleClose} /> }
             </div>}
             {errorFetching && <Retry onRetry={handleSave} />}
+            {failed && <Retry onRetry={() => setFailed(false)} message="Failed, please verify your inputs and try again" />}
         </div>
     );
 }
