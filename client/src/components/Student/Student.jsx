@@ -84,6 +84,7 @@ function Student(){
                     </tbody>
                 </table> } 
             </div>}
+            {/**when connection is off */}
             {errorFetching && <Retry onRetry={handleRefresh}/>}
         </div>
     );

@@ -10,6 +10,7 @@ function AddStudent(){
     const [duplicate, setDuplicate] = useState(false)
     const [isValid, setIsValid] = useState(true)
     const [errorFetching, setErrorFetching] = useState(false)
+    const [processing, setProcessing] = useState(false)
     const [failed, setFailed] = useState(false)
     const [data, setData] = useState({
         Course: "BSIT",
@@ -24,7 +25,9 @@ function AddStudent(){
             setErrorFetching(false)
             if(!navigator.onLine) setErrorFetching(true)
              // console.log(data)
+             setProcessing(true)
             const response = await axios.post('/addStudent', data)
+            setProcessing(false)
             // console.log(response)
             if(response.data.duplicate && response !== null){
                 setDuplicate(true)
@@ -136,7 +139,10 @@ function AddStudent(){
                     </form>
                     <div className="flex gap-2 items-center justify-end mt-3 border-t border-gray-300 py-3">
                             <Link to='/students'><Button text="Back" className="px-9 bg-neutral-600" /></Link>
-                            <Button text="Save" onClick={handleSave} className="px-9 bg-emerald-600 " />
+                            <Button text="Save" onClick={handleSave} className="px-9 bg-emerald-600">
+                              {processing &&   
+                              <div className="spinner-border h-4 w-4 ms-1" role="status"></div>}
+                            </Button>
                         </div>
                     </div>
                 {duplicate && <MessageBox message="Duplicate Entry" header="Error" handleClose={handleClose} /> }
