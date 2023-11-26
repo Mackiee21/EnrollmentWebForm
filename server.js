@@ -2,7 +2,6 @@ const express = require("express")
 const mssql = require("mssql")
 const cors = require("cors")
 const path = require("path")
-const multer = require("multer")
 const { json } = require("express")
 const { prototype } = require("events")
 
@@ -17,14 +16,13 @@ const connectDb = async () => {
     }
 }
 const app = express()
-const upload = multer()
 //arrangement matters ata mak 
 app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded())
 
 
-// app.use(express.static(path.join(__dirname, "client", "dist")));
+app.use(express.static(path.join(__dirname, "client", "dist")));
 
 app.get("/student", async (req, res) => {
     try {
@@ -37,18 +35,20 @@ app.get("/student", async (req, res) => {
     }
 })
 
-app.post("/addStudent", upload.none(), async (req, res) => {
+app.post("/addStudent",  async (req, res) => {
+    console.log(req.body)
     const { IDNumber, Firstname, MiddleName, Lastname, ImageUrl, Course, Year, Remarks } = req.body;
     try {
-        if(!CheckDuplicate){
+        if(await CheckDuplicate(IDNumber) === false){
             const pool = await mssql.connect();
             const sql = `INSERT INTO Students 
                         (StudentIDNumber, StudentFName, StudentLName, StudentMName, StudentCourse, StudentYr, StudentRemarks, StudentStatus, ImageUrl)
                         VALUES('${IDNumber}', '${Firstname}', '${Lastname}', '${MiddleName}', '${Course}', '${Year}', '${Remarks}', 'AC', '${ImageUrl}')`;
             const response = await pool.request().query(sql)
             console.log('response', response)          
-                 res.send({success: true })    
-        }else{``
+                 res.send({success: true, redirectTo: '/students' })    
+        }else{
+            //means ID number already exists in the database
             res.send({duplicate: true})
         }
            
@@ -59,15 +59,15 @@ app.post("/addStudent", upload.none(), async (req, res) => {
 })
 
 async function CheckDuplicate(IDNumber){
-    const pool = mssql.connect();
+    const pool = await mssql.connect();
     const sql = `SELECT * FROM Students WHERE StudentIDNumber = ${IDNumber}`;
     const response = await pool.request().query(sql);
-    console.log(response)
+    // s
     return response.recordset.length > 0 ? true : false
 }
-// app.get("*", (_, res) => {
-//     res.sendFile(path.join(__dirname, "../client/dist/index.html"))
-//   });
+app.get("*", (_, res) => {
+    res.sendFile(path.join(__dirname, "../client/dist/index.html"))
+  });
 const port = process.env.PORT || 3000
 connectDb().then(() => {
     app.listen(port, () => {

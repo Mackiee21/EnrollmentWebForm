@@ -26,8 +26,8 @@ function Student(){
         const response = await axios.get("/student");
         setErrorFetching(false)
         if(response.status !== 200){
-            alert("haa?")
-            return
+            
+            setErrorFetching(true)
         }
         setStudents(response.data);
         setFetching(false)
