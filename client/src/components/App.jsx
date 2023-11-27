@@ -54,7 +54,7 @@ const  Rootables = ({ mTop }) => {
     return(
         <div className="flex ps-content"> 
             <Sidebar mTop={mTop} />
-            <div className='overflow-y-auto overflow-x-hidden w-full'>
+            <div className='overflow-y-auto overflow-x-hidden w-full bg-zinc-50'>
                 <Outlet />
             </div>
         </div>

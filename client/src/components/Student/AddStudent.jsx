@@ -80,7 +80,7 @@ function AddStudent(){
         <div className="flex justify-center relative">
            <HelmetComp title="University of Cebu - Add Student" />
            {!errorFetching && !failed && <div className='flex justify-center relative w-full'>
-                <div className='w-8/12 mt-3 py-7 px-9 border border-gray-300 rounded-md shadow ms-2 shadow-sinc-300'>
+                <div className='md:w-9/12 lg:w-8/12 mt-3 py-7 px-9 bg-gray-100 border border-gray-300 rounded-md shadow ms-2 shadow-sinc-300'>
                     <form method="post">
                         <div className='grid grid-cols-3'>
                             <div className='col-span-2'>
