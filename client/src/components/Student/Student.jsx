@@ -53,7 +53,7 @@ function Student(){
                 { !fetching && students.length > 0 && <table className="table-auto w-full">
                     <thead className=''>
                         <tr className='border-b-2 bg-zinc-100 text-xsm'>
-                            <th className='py-2.5 px-3 text-start'>ID Number</th>
+                            <th className='py-2.5 px-2 text-start'>ID Number</th>
                             <th className='px-3 text-start'>Firstname</th>
                             <th className='px-3 text-start'>Middle Name</th>
                             <th className='px-3 text-start'>Lastname</th>

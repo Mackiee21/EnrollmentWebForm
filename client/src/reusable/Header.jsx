@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 function Header({title, filterBy, handleRefresh, fetching}){
     const classes = "focus:outline-none focus:ring focus:ring-main ";
     return(
-        <div className="flex items-center justify-between w-full p-3 pb-1 me-5 mb-2">
+        <div className="flex items-center justify-between w-full pt-3 ps-2 pe-3 pb-1 me-5 mb-2">
             <div className="text-base font-bold tracking-wide flex items-center gap-3">
                 <div className='flex items-center gap-1'>
                     <UserPlus size={18} />
