@@ -1,18 +1,19 @@
 import { forwardRef } from 'react';
-import { LogOut, LucideFolderSymlink } from 'lucide-react'
+import { Link } from 'react-router-dom'
+import { LogOut, User } from 'lucide-react'
 import Button from '../reusable/Button';
 
 function NavBar(_, ref){
     const classes = "shadow-md shadow-header/50 bg-header text-white";
     return(
-        <div ref={ref} className="flex align-center bg-zinc-50 justify-between py-3 px-5 sticky top-0 z-50 
+        <div ref={ref} className="flex align-center bg-gray-100 justify-between py-3 px-5 sticky top-0 z-50 
         border-b-2">
-            <div className="hero font-bold text-xl uppercase tracking-widest flex items-center gap-2">
-                <LucideFolderSymlink size={20} />
-                Enrollment Web
+            <div className="font-bold text-xl uppercase text-main tracking-wide flex items-center gap-1">
+                <User size={22}  />
+                Mackiee
             </div>
            <nav className='nav-header flex gap-2 items-center'>
-                <ul className="flex text-sm font-semibold gap-5">
+                <ul className="flex text-sm font-medium gap-5">
                     <li className="cursor-pointer">Home</li>
                     <li className="cursor-pointer">About</li>
                     <li className="cursor-pointer">Contact</li>

@@ -22,10 +22,6 @@ function App(){
                 children:[
                     {
                         index: true,
-                        element: <Home />
-                    },
-                    {
-                        path: 'students',
                         element: <Student />,
                     
                     },

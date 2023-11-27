@@ -19,7 +19,7 @@ const app = express()
 //arrangement matters ata mak 
 app.use(cors())
 app.use(express.json())
-app.use(express.urlencoded())
+app.use(express.urlencoded({extended: false}))
 
 
 app.use(express.static(path.join(__dirname, "client", "dist")));
@@ -46,7 +46,7 @@ app.post("/addStudent",  async (req, res) => {
                         VALUES('${IDNumber}', '${Firstname}', '${Lastname}', '${MiddleName}', '${Course}', '${Year}', '${Remarks}', 'AC', '${ImageUrl}')`;
             const response = await pool.request().query(sql)
             console.log('response', response)          
-                 res.send({success: true, redirectTo: '/students' })    
+                 res.send({success: true, redirectTo: '/' })    
         }else{
             //means ID number already exists in the database
             res.send({duplicate: true})

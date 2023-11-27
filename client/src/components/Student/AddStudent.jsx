@@ -4,6 +4,8 @@ import { useState } from 'react'
 import axios from 'axios'
 import MessageBox from '../../reusable/MessageBox';
 import Retry from '../../reusable/Retry';
+import { Helmet } from 'react-helmet';
+import HelmetComp from '../../reusable/HelmetComp';
 
 function AddStudent(){
     const navigate = useNavigate()
@@ -17,7 +19,7 @@ function AddStudent(){
         MiddleName: "",
         Year: 1,
         Remarks: "Old",
-        ImageUrl: "https://tse4.mm.bing.net/th?id=OIP.p1U_G67ouFOGjaEBUmXwrgEsEs&pid=Api&P=0&h=220"
+        ImageUrl: null
     })
 
     const handleSave = async () => {
@@ -76,6 +78,7 @@ function AddStudent(){
     }
     return(
         <div className="flex justify-center relative">
+           <HelmetComp title="University of Cebu - Add Student" />
            {!errorFetching && !failed && <div className='flex justify-center relative w-full'>
                 <div className='w-8/12 mt-3 py-7 px-9 border border-gray-300 rounded-md shadow ms-2 shadow-sinc-300'>
                     <form method="post">
@@ -91,7 +94,7 @@ function AddStudent(){
                                 </div>
                             </div>
                             <div className='flex justify-center h-40'>
-                                <img src={`${data["ImageUrl"] ?? ''}`} className='w-2/3 object-cover object-center h-auto border-2 shadow-lg shadow-zinc-300 cursor-pointer transition-all duraction-75 ease-in-out rounded-lg hover:scale-105'  alt="student photo" />
+                                <img src={`${data["ImageUrl"] ?? 'https://tse4.mm.bing.net/th?id=OIP.p1U_G67ouFOGjaEBUmXwrgEsEs&pid=Api&P=0&h=220'}`} className='w-2/3 object-cover object-center h-auto border-2 shadow-lg shadow-zinc-300 cursor-pointer transition-all duraction-75 ease-in-out rounded-lg hover:scale-105'  alt="student photo" />
                             </div>
                         </div> {/* end of first row */}
 
@@ -102,7 +105,7 @@ function AddStudent(){
                             </div>
                             <div className="flex flex-col">
                                 <label className="mb-2 text-zinc-600 font-semibold text-xsm">Image URL</label>
-                                <input name='ImageUrl' onChange={handleInputChange} placeholder='Paste your url here...' className="form-input rounded-md focus:outline-none focus:border focus:border-main p-1.5" type="text" />
+                                <input name='ImageUrl' value={isValid ? `${data.ImageUrl ?? ""}` : ""} onChange={handleInputChange} placeholder='Paste your url here...' className="form-input rounded-md focus:outline-none focus:border focus:border-main p-1.5" type="text" />
                                 {!isValid && <span className='text-red-500 mt-1 font-medium text-xsm tracking-wide'>Invalid Image Url</span>}
                             </div>
                             <div className="flex flex-col mb-2">
@@ -138,8 +141,8 @@ function AddStudent(){
                         </div> {/*end of second grid basta subaya lang hehe */}
                     </form>
                     <div className="flex gap-2 items-center justify-end mt-3 border-t border-gray-300 py-3">
-                            <Link to='/students'><Button text="Back" className="px-9 bg-neutral-600" /></Link>
-                            <Button text="Save" onClick={handleSave} className="px-9 bg-emerald-600">
+                 {/*CHANGE HERE */}           <Link to='/'><Button disabled={processing} text="Back" shadow="neutral-600" className="px-9 bg-neutral-600" /></Link>
+                            <Button text={processing ? "Saving..." : "Save"} shadow="emerald-600" onClick={handleSave} className="px-9 bg-emerald-600">
                               {processing &&   
                               <div className="spinner-border h-4 w-4 ms-1" role="status"></div>}
                             </Button>

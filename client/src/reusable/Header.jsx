@@ -1,4 +1,4 @@
-import { Plus, LucideArrowDownSquare, UserCheck, RefreshCwIcon } from 'lucide-react'
+import { Plus, LucideArrowDownSquare, UserPlus, RefreshCwIcon } from 'lucide-react'
 import Button from './Button';
 import { Link } from 'react-router-dom'
 
@@ -8,7 +8,7 @@ function Header({title, filterBy, handleRefresh, fetching}){
         <div className="flex items-center justify-between w-full p-3 pb-1 me-5 mb-2">
             <div className="text-base font-bold tracking-wide flex items-center gap-3">
                 <div className='flex items-center gap-1'>
-                    <UserCheck size={18} />
+                    <UserPlus size={18} />
                     {title}
                 </div>
             </div>

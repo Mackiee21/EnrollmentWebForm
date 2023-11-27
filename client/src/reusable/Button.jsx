@@ -1,6 +1,6 @@
-function Button({text, icon, iconLeft, className, children, ...args}){
+function Button({text, icon, iconLeft, className, disabled, shadow, children, ...args}){
     return(
-        <button {...args} className={`shadow ${className ? `shadow-[${className}]` : "shadow-main"} flex items-center gap-1 text-white text-sm rounded-full font-semibold tracking-wide py-2 px-4 ${className}`}>{iconLeft}{text}{children}{icon}</button>
+        <button disabled={disabled} {...args} className={`shadow ${shadow ? `shadow-${shadow}` : "shadow-main"} flex items-center gap-1 text-white text-sm rounded-full font-semibold tracking-wide py-2 px-4 ${className}`}>{iconLeft}{text}{children}{icon}</button>
     );
 }
 

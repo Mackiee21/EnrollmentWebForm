@@ -5,6 +5,7 @@ import Retry from '../../reusable/Retry'
 import { Trash2, Edit } from 'lucide-react'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
+import HelmetComp from '../../reusable/HelmetComp'
 
 function Student(){
     const [students, setStudents] = useState([])
@@ -44,6 +45,7 @@ function Student(){
     const filterBy = ['All', 'BSIT', 'BSIS', 'BSN', 'BSCPE']
     return(
         <div className='w-full px-3'>
+           <HelmetComp title="University of Cebu - Students" />
             <Header title="Students" filterBy={filterBy} handleRefresh={handleRefresh} fetching={fetching} />
             {!errorFetching && <div className='overflow-x-auto'>
                 { fetching && <Loading /> }
