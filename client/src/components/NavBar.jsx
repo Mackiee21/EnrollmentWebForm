@@ -12,7 +12,7 @@ function NavBar(_, ref){
                 <div className='w-10 rounded-full border-2 border-gray-300'>
                     <img className='w-full h-auto rounded-full object-cover object-center' src="https://scontent.fceb2-1.fna.fbcdn.net/v/t39.30808-6/299978409_2118215458348424_4457052968317549199_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeEIz21xspMn7cvotyf_NoCBcllEffGsjptyWUR98ayOm8lvkY5mjT7YVJSBjbAcw7dmiHrsXUfwhyApdD2udlB0&_nc_ohc=Nt6qWJNzb10AX-Q4vFY&_nc_ht=scontent.fceb2-1.fna&oh=00_AfDNybKOp4g8msi48rnSVqIj6APrZH67lxCUsitH1Oaaew&oe=656595FF" />
                 </div>
-               <a href='https://github.com/Mackiee21' target="_blank">@Mackiee</a>
+               <a href='https://github.com/Mackiee21' target="_blank">@Mackiee</a>  
             </div>
            <nav className='nav-header flex gap-2 items-center'>
                 <ul className="flex text-sm font-medium gap-5">

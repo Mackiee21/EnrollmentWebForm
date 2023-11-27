@@ -5,7 +5,7 @@ function Sidebar({ mTop }){
     return(
         <div style={{minHeight: `calc(100dvh - ${mTop}px)` }} className="w-1/6 text-xsm bg-gray-100 fixed left-0 overflow-y-auto overflow-x-hidden">
                <nav className="py-2 px-2">
-                    <ul className="tracking-wider">
+                    <ul className="tracking-wide text-xsm">
                         <li> {/**wrapper nalng ni hahahhah */}
                             <Link className='font-medium flex items-center gap-2 lg:hover:bg-neutral-200 hover:text-main py-2.5 px-2 rounded w-full' to="/development">
                                 <Home size={17} />

@@ -4,7 +4,6 @@ import { useState } from 'react'
 import axios from 'axios'
 import MessageBox from '../../reusable/MessageBox';
 import Retry from '../../reusable/Retry';
-import { Helmet } from 'react-helmet';
 import HelmetComp from '../../reusable/HelmetComp';
 
 function AddStudent(){
@@ -14,6 +13,7 @@ function AddStudent(){
     const [errorFetching, setErrorFetching] = useState(false)
     const [processing, setProcessing] = useState(false)
     const [failed, setFailed] = useState(false)
+    const [isValidating, setIsValidating] = useState(false);
     const [data, setData] = useState({
         Course: "BSIT",
         MiddleName: "",
@@ -23,6 +23,7 @@ function AddStudent(){
     })
 
     const handleSave = async () => {
+        //check dre if dle naba empty ang mga importante na fields
        try {
             setErrorFetching(false)
             if(!navigator.onLine) setErrorFetching(true)
@@ -46,6 +47,7 @@ function AddStudent(){
     const handleInputChange = async (e) => {
         const key = e.target.name
         if(e.target.name === "ImageUrl"){
+            setIsValidating(true)
             valideateImage(e.target.value)
         }
         setData(prev => {
@@ -65,9 +67,11 @@ function AddStudent(){
         img.src = url;
         img.onload = function(){
             setIsValid(true)
+            setIsValidating(false)
         }
         img.onerror = function() {
             setIsValid(false)
+            setIsValidating(false)
             setData(prev => {
                 return {
                     ...prev,
@@ -75,6 +79,7 @@ function AddStudent(){
                 }
             })
         }
+        
     }
     return(
         <div className="flex justify-center relative">
@@ -82,15 +87,17 @@ function AddStudent(){
            {!errorFetching && !failed && <div className='flex justify-center relative w-full'>
                 <div className='md:w-9/12 lg:w-8/12 mt-3 py-7 px-9 bg-gray-50 border border-gray-300 rounded-md shadow ms-2 shadow-sinc-300'>
                     <form method="post">
-                        <div className='grid grid-cols-3'>
+                        <div className='grid grid-cols-3 gap-2 mb-1'>
                             <div className='col-span-2'>
-                                <div className="flex flex-col mb-2">
+                                <div className="flex flex-col mb-4">
                                     <label className="mb-2 text-zinc-600 font-semibold text-xsm">ID Number</label>
                                     <input name='IDNumber' value={`${data["IDNumber"] ?? ""}`} onChange={handleInputChange} className="form-input rounded-md focus:outline-none focus:border focus:border-main p-1.5" type="text" />
+                                    <span className='text-red-500 hidden mt-1 font-medium text-xsm'>This field is required</span>
                                 </div>
-                                <div className="flex flex-col">
+                                <div className="flex flex-col mb-3">
                                     <label className="mb-2 text-zinc-600 font-semibold text-xsm">Firstname</label>
                                     <input name='Firstname' value={`${data["Firstname"] ?? ""}`} onChange={handleInputChange} className="form-input rounded-md focus:outline-none focus:border focus:border-main p-1.5" type="text" />
+                                    <span className='text-red-500 hidden my-1 font-medium text-xsm'>This field is required</span>
                                 </div>
                             </div>
                             <div className='flex justify-center h-40'>
@@ -98,19 +105,21 @@ function AddStudent(){
                             </div>
                         </div> {/* end of first row */}
 
-                        <div className='grid grid-cols-2 gap-3'>
-                            <div className="flex flex-col mb-2">
-                                <label className="mb-2 text-zinc-600 font-semibold text-xsm">Middle Name</label>
+                        <div className='grid grid-cols-2 gap-4'>
+                            <div className="flex flex-col">
+                                <label className="mb-2 text-zinc-600 font-semibold text-xsm">Middle Name<span className='ms-2 font-normal italic text-xsm'>(Optional)</span></label>
                                 <input name='MiddleName' value={`${data["MiddleName"] ?? ""}`} onChange={handleInputChange} className="form-input rounded-md focus:outline-none focus:border focus:border-main p-1.5" type="text" />
                             </div>
                             <div className="flex flex-col">
                                 <label className="mb-2 text-zinc-600 font-semibold text-xsm">Image URL</label>
                                 <input name='ImageUrl' value={isValid ? `${data.ImageUrl ?? ""}` : ""} onChange={handleInputChange} placeholder='Paste your url here...' className="form-input rounded-md focus:outline-none focus:border focus:border-main p-1.5" type="text" />
-                                {!isValid && <span className='text-red-500 mt-1 font-medium text-xsm tracking-wide'>Invalid Image Url</span>}
+                                {!isValid && !isValidating &&  <span className='text-red-500 mt-1 font-medium text-xsm tracking-wide'>Invalid Image Url</span>}
+                                {isValidating && <span className='font-normal text-gray-700 tracking-wide ms-0.5 mt-1 text-base'>Validating...</span>}
                             </div>
-                            <div className="flex flex-col mb-2">
+                            <div className="flex flex-col">
                                 <label className="mb-2 text-zinc-600 font-semibold text-xsm">Lastname</label>
                                 <input name='Lastname' value={`${data["Lastname"] ?? ""}`} onChange={handleInputChange} className="form-input rounded-md focus:outline-none focus:border focus:border-main p-1.5" type="text" />
+                                <span className='text-red-500  hidden mt-1 font-medium text-xsm'>This field is required</span>
                             </div>
                             <div className="flex flex-col">
                                 <label className="mb-2 text-zinc-600 font-semibold text-xsm">Course</label>
@@ -120,7 +129,7 @@ function AddStudent(){
                                     <option value="BSANIM">BSANIM</option>
                                 </select>
                             </div>
-                            <div className="flex flex-col mb-2">
+                            <div className="flex flex-col mb-4">
                                 <label className="mb-2 text-zinc-600 font-semibold text-xsm">Year</label>
                                 <select name='Year' value={`${data["Year"] ?? ""}`} onChange={handleInputChange} className="form-select cursor-pointer rounded-md focus:outline-none focus:border focus:border-main p-1.5">
                                     <option value="1">1st Year</option>
@@ -141,7 +150,7 @@ function AddStudent(){
                         </div> {/*end of second grid basta subaya lang hehe */}
                     </form>
                     <div className="flex gap-2 items-center justify-end mt-3 border-t border-gray-300 py-3">
-                 {/*CHANGE HERE */}           <Link to='/'><Button disabled={processing} text="Back" shadow="neutral-600" className="px-9 bg-neutral-600" /></Link>
+                 {/*CHANGE HERE */}<Link to='/'><Button disabled={processing} text="Back" shadow="neutral-600" className="px-9 bg-neutral-600" /></Link>
                             <Button text={processing ? "Saving..." : "Save"} shadow="emerald-600" onClick={handleSave} className="px-9 bg-emerald-600">
                               {processing &&   
                               <div className="spinner-border h-4 w-4 ms-1" role="status"></div>}
@@ -151,7 +160,7 @@ function AddStudent(){
                 {duplicate && <MessageBox message="Duplicate Entry" header="Error" handleClose={handleClose} /> }
             </div>}
             {errorFetching && <Retry onRetry={handleSave} />}
-            {failed && <Retry onRetry={() => setFailed(false)} message="Failed, please verify your inputs and try again" />}
+            {failed && <Retry text="Back" onRetry={() => setFailed(false)} message="Failed, please verify your inputs and try again" />}
         </div>
     );
 }
