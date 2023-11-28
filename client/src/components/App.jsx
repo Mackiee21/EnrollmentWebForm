@@ -1,8 +1,10 @@
 import Student from './Student/Student';
+import StudentContainer from './Student/StudentContainer'
 import AddStudent from './Student/AddStudent'
 import Sidebar from './Sidebar';
 import NavBar from './NavBar';
 import Home from './Home'
+import RedirectUser from './RedirectUser'
 import { useRef, useEffect, useState } from 'react';
 import { createBrowserRouter, createRoutesFromElements, RouterProvider, Route, Link, Outlet} from 'react-router-dom'
 import ErrorPage from '../reusable/errorPage';
@@ -17,22 +19,43 @@ function App(){
     const router = createBrowserRouter([
             {
                 path: '/',
-                element: <Rootables mTop={mTop} />,
+                element: <MainRoutes mTop={mTop} navBarRef={navBarRef} />,
                 errorElement: <ErrorPage />,
                 children:[
                     {
                         index: true,
-                        element: <Student />,
-                    
+                        element: <Home mTop={mTop} />
+
                     },
                     {
-                        path: 'students/add',
-                        element: <AddStudent />
+                        path: "/records",
+                        element: <SidebarRoutes mTop={mTop} />,
+                        children:[
+                            {
+                                index: true,
+                                element: <RedirectUser /> //hahahahaha looya, mao rana ako nahuhunaan na option mak ahahhahah
+                            },
+                            {
+                                path: "students",
+                                element: <StudentRoutes />,
+                                children:[
+                                    {
+                                        index: true,
+                                        element: <Student />
+                                    },
+                                    {
+                                        path: "add",
+                                        element: <AddStudent />
+                                    }
+                                ]
+                            
+                            },
+                            {
+                                path: "subjects",
+                                element: <Subject />
+                            }
+                        ]
                     },
-                    {
-                        path: 'subjects',
-                        element: <Subject />
-                    }
                 ]
             }
         ]
@@ -44,19 +67,36 @@ function App(){
 
    return(
     <div className='m-0 p-0 box-border bg-gray-50 h-screen max-h-screen overflow-x-hidden overflow-y-auto'>
-        <NavBar ref={navBarRef} />
         <RouterProvider router={router} />
     </div>
    );
 }
-
-const  Rootables = ({ mTop }) => {
+const MainRoutes = ({mTop, navBarRef}) => {
+    return(
+        <div>
+             <NavBar ref={navBarRef} />
+            <div style={{height: `calc(100dvh - ${mTop + 4}px)`}}>
+                <Outlet />
+            </div>
+        </div>
+    );
+}
+const  SidebarRoutes = ({ mTop }) => {
     return(
         <div className="flex ps-content"> 
             <Sidebar mTop={mTop} />
             <div className='w-full  bg-zinc-50'>
                 <Outlet />
             </div>
+        </div>
+    );
+}
+
+const StudentRoutes =() => {
+    return(
+        <div>
+            <StudentContainer />
+            <Outlet />
         </div>
     );
 }

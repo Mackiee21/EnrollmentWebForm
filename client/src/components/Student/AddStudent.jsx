@@ -160,7 +160,7 @@ function AddStudent(){
                         </div> {/*end of second grid basta subaya lang hehe */}
                     </form>
                     <div className="flex gap-2 items-center justify-end mt-3 border-t border-gray-300 py-3">
-                 {/*CHANGE HERE */}<Link to='/'><Button disabled={processing} text="Back" shadow="neutral-600" className="px-9 bg-neutral-600" /></Link>
+                 {/*CHANGE HERE */}<Link to='/records/students'><Button disabled={processing} text="Back" shadow="neutral-600" className="px-9 bg-neutral-600" /></Link>
                             <Button text={processing ? "Saving..." : "Save"} shadow="emerald-600" onClick={handleSave} className="px-9 bg-emerald-600">
                               {processing &&   
                               <div className="spinner-border h-4 w-4 ms-1" role="status"></div>}

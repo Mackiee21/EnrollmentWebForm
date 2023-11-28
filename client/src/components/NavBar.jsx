@@ -1,6 +1,6 @@
 import { forwardRef } from 'react';
-import { Link } from 'react-router-dom'
-import { LogOut, User } from 'lucide-react'
+import { NavLink } from 'react-router-dom'
+import { LogOut, Home, PhoneIcon, Database } from 'lucide-react'
 import Button from '../reusable/Button';
 
 function NavBar(_, ref){
@@ -14,11 +14,32 @@ function NavBar(_, ref){
                 </div>
                <a href='https://github.com/Mackiee21' target="_blank">Mackiee</a>  
             </div>
-           <nav className='nav-header flex gap-2 items-center'>
-                <ul className="flex text-sm font-medium gap-5">
-                    <li className="cursor-pointer">Home</li>
-                    <li className="cursor-pointer">About</li>
-                    <li className="cursor-pointer">Contact</li>
+           <nav className='nav-header flex gap-6 items-center'>
+                <ul className="flex text-sm gap-5">
+                    <NavLink className={({isActive}) => [
+                        isActive ? "active" : ""
+                        ].join(" ")
+                    } 
+                    to="/">
+                        <Home size={16} />
+                        Home
+                    </NavLink>
+                    <NavLink className={({isActive}) => [
+                        isActive ? "active" : ""
+                        ].join(" ")
+                    } 
+                    to="/records">
+                        <Database size={16} />
+                        Records
+                    </NavLink>
+                    <NavLink className={({isActive}) => [
+                        isActive ? "active" : ""
+                        ].join(" ")
+                    } 
+                     to="/contact" >
+                        <PhoneIcon size={16} />
+                        Contact Us
+                    </NavLink>
                 </ul>
                 <Button text="Logout" className="bg-main" icon={<LogOut size={18} />} />
                 {/* <button className='rounded-full py-2 px-4 bg-main text-white font-semibold text-sm tracking-wide'>Logout</button> */}

@@ -25,7 +25,7 @@ function Header({title, filterBy, handleRefresh, fetching}){
                     </select>               
             </label>
             
-            <Link to={'/students/add'}><Button text="Add" className="bg-main" icon={<Plus size={18} />} /></Link>
+            <Link to={'/records/students/add'}><Button text="Add" className="bg-main" icon={<Plus size={18} />} /></Link>
             {/* <button className="ms-2 flex gap-1 items-center bg-main py-1.5 px-4 text-white text-sm tracking-wide font-semibold border-solid border-2 border-main rounded-full">Add<Plus size={20} /></button> */}
            </div>
         </div>
