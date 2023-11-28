@@ -66,7 +66,7 @@ async function CheckDuplicate(IDNumber){
     return response.recordset.length > 0 ? true : false
 }
 app.get("*", (_, res) => {
-    res.sendFile(path.join(__dirname, "../client/dist/index.html"))
+    res.sendFile(path.join(__dirname, "./client/dist/index.html"))
   });
 const port = process.env.PORT || 3000
 connectDb().then(() => {
