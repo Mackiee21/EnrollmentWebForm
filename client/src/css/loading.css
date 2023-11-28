@@ -101,7 +101,7 @@
     height: inherit;
     border-radius: 50%;
     border: 3.5px dotted white;
-    animation: spin 2.5s linear infinite;
+    animation: spin 1.6s linear infinite;
 }
 @keyframes spin {
     from{

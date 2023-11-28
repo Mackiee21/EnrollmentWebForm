@@ -43,7 +43,7 @@ function App(){
     }, []);
 
    return(
-    <div className='m-0 p-0 box-border bg-gray-50 h-screen max-h-screen'>
+    <div className='m-0 p-0 box-border bg-gray-50 h-screen max-h-screen overflow-x-hidden overflow-y-auto'>
         <NavBar ref={navBarRef} />
         <RouterProvider router={router} />
     </div>
@@ -54,7 +54,7 @@ const  Rootables = ({ mTop }) => {
     return(
         <div className="flex ps-content"> 
             <Sidebar mTop={mTop} />
-            <div className='overflow-y-auto overflow-x-hidden w-full bg-zinc-50'>
+            <div className='w-full  bg-zinc-50'>
                 <Outlet />
             </div>
         </div>

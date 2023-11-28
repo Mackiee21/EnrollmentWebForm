@@ -1,19 +1,28 @@
 import { Link, useNavigate } from 'react-router-dom'
 import Button from '../../reusable/Button';
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import axios from 'axios'
 import MessageBox from '../../reusable/MessageBox';
 import Retry from '../../reusable/Retry';
 import HelmetComp from '../../reusable/HelmetComp';
+import FieldInput from '../../reusable/FieldInput';
+import SelectField from '../../reusable/SelectField';
 
 function AddStudent(){
     const navigate = useNavigate()
+    const formRef = useRef(null)
     const [duplicate, setDuplicate] = useState(false)
     const [isValid, setIsValid] = useState(true)
     const [errorFetching, setErrorFetching] = useState(false)
     const [processing, setProcessing] = useState(false)
     const [failed, setFailed] = useState(false)
     const [isValidating, setIsValidating] = useState(false);
+    const [invalidFields, setInvalidFields] = useState({
+        IDNumber: false,
+        Firstname: false,
+        Lastname: false,
+        ImageUrl: false
+    })
     const [data, setData] = useState({
         Course: "BSIT",
         MiddleName: "",
@@ -23,29 +32,52 @@ function AddStudent(){
     })
 
     const handleSave = async () => {
-        //check dre if dle naba empty ang mga importante na fields
-       try {
-            setErrorFetching(false)
-            if(!navigator.onLine) setErrorFetching(true)
-             // console.log(data)
-             setProcessing(true)
-            const response = await axios.post('/addStudent', data)
-            setProcessing(false)
-            // console.log(response)
-            if(response.data.duplicate && response !== null){
-                setDuplicate(true)
-            }else if(response.data.success){
-                    navigate(response.data.redirectTo) //return user to students index view if sa eldnet pa
-            }else{
-                setFailed(true)
-            }
-       } catch (error) {
-            setErrorFetching(true)
+       if(!CheckInputs()){
+            try {
+                setErrorFetching(false)
+                if(!navigator.onLine) setErrorFetching(true)
+                // console.log(data)
+                setProcessing(true)
+                const response = await axios.post('/addStudent', data)
+                setProcessing(false)
+                // console.log(response)
+                if(response.data.duplicate && response !== null){
+                    setDuplicate(true)
+                }else if(response.data.success){
+                        navigate(response.data.redirectTo) //return user to students index view if sa eldnet pa
+                }else{
+                    setFailed(true)
+                }
+        } catch (error) {
+                setErrorFetching(true)
+        }
        }
     }
 
+    const CheckInputs = () => {
+        let hasInvalid = false;
+        formRef.current.querySelectorAll("input").forEach(input => {
+            if(!input.value && input.name !== "MiddleName"){
+                const name = input.name;
+                hasInvalid = true;
+                setInvalidFields(prev => {
+                    return {
+                        ...prev,
+                        [name]: true
+                    }
+                })
+            }
+        })
+        return hasInvalid
+    }
     const handleInputChange = async (e) => {
         const key = e.target.name
+        setInvalidFields(prev => {
+            return {
+                ...prev,
+                [key]: false
+            }
+        })
         if(e.target.name === "ImageUrl"){
             setIsValidating(true)
             valideateImage(e.target.value)
@@ -85,19 +117,16 @@ function AddStudent(){
         <div className="flex justify-center relative">
            <HelmetComp title="University of Cebu - Add Student" />
            {!errorFetching && !failed && <div className='flex justify-center relative w-full'>
-                <div className='md:w-9/12 lg:w-8/12 mt-3 py-7 px-9 bg-gray-50 border border-gray-300 rounded-md shadow ms-2 shadow-sinc-300'>
-                    <form method="post">
+                <div className='md:w-9/12 lg:w-8/12 my-3 py-7 px-9 bg-gray-50 border border-gray-300 rounded-md shadow shadow-sinc-300'>
+                    <form method="post" ref={formRef}>
+                        <h1 className='text-center mb-7 font-black text-xl uppercase tracking-wider text-white bg-main/90 rounded-md shadow shadow-main/70 py-3 px-6'>Add Student</h1>
                         <div className='grid grid-cols-3 gap-2 mb-1'>
                             <div className='col-span-2'>
                                 <div className="flex flex-col mb-4">
-                                    <label className="mb-2 text-zinc-600 font-semibold text-xsm">ID Number</label>
-                                    <input name='IDNumber' value={`${data["IDNumber"] ?? ""}`} onChange={handleInputChange} className="form-input rounded-md focus:outline-none focus:border focus:border-main p-1.5" type="text" />
-                                    <span className='text-red-500 hidden mt-1 font-medium text-xsm'>This field is required</span>
+                                    <FieldInput label="ID Number" name="IDNumber" onChange={handleInputChange} data={data} errorSpan={invalidFields.IDNumber} />
                                 </div>
                                 <div className="flex flex-col mb-3">
-                                    <label className="mb-2 text-zinc-600 font-semibold text-xsm">Firstname</label>
-                                    <input name='Firstname' value={`${data["Firstname"] ?? ""}`} onChange={handleInputChange} className="form-input rounded-md focus:outline-none focus:border focus:border-main p-1.5" type="text" />
-                                    <span className='text-red-500 hidden my-1 font-medium text-xsm'>This field is required</span>
+                                    <FieldInput label="Firstname" name="Firstname" onChange={handleInputChange} data={data} errorSpan={invalidFields.Firstname} />
                                 </div>
                             </div>
                             <div className='flex justify-center h-40'>
@@ -107,45 +136,26 @@ function AddStudent(){
 
                         <div className='grid grid-cols-2 gap-4'>
                             <div className="flex flex-col">
-                                <label className="mb-2 text-zinc-600 font-semibold text-xsm">Middle Name<span className='ms-2 font-normal italic text-xsm'>(Optional)</span></label>
-                                <input name='MiddleName' value={`${data["MiddleName"] ?? ""}`} onChange={handleInputChange} className="form-input rounded-md focus:outline-none focus:border focus:border-main p-1.5" type="text" />
+                                <FieldInput label="Middle Name" name="MiddleName" onChange={handleInputChange} data={data} />
                             </div>
                             <div className="flex flex-col">
-                                <label className="mb-2 text-zinc-600 font-semibold text-xsm">Image URL</label>
-                                <input name='ImageUrl' value={isValid ? `${data.ImageUrl ?? ""}` : ""} onChange={handleInputChange} placeholder='Paste your url here...' className="form-input rounded-md focus:outline-none focus:border focus:border-main p-1.5" type="text" />
-                                {!isValid && !isValidating &&  <span className='text-red-500 mt-1 font-medium text-xsm tracking-wide'>Invalid Image Url</span>}
+                                <label className="">Image URL</label>
+                                <input name='ImageUrl' value={isValid ? `${data.ImageUrl || ""}` : ""} onChange={handleInputChange} placeholder='Paste your url here...' type="text" />
+                                {!isValid && !isValidating && !invalidFields.ImageUrl &&  <span className='text-red-500 mt-1 font-medium text-xsm tracking-wide'>Invalid Image Url</span>}
                                 {isValidating && <span className='font-normal text-gray-700 tracking-wide ms-0.5 mt-1 text-base'>Validating...</span>}
+                                {invalidFields.ImageUrl && !isValidating && <span className='text-red-500 my-1 font-medium text-xsm'>This field is required</span>}
                             </div>
                             <div className="flex flex-col">
-                                <label className="mb-2 text-zinc-600 font-semibold text-xsm">Lastname</label>
-                                <input name='Lastname' value={`${data["Lastname"] ?? ""}`} onChange={handleInputChange} className="form-input rounded-md focus:outline-none focus:border focus:border-main p-1.5" type="text" />
-                                <span className='text-red-500  hidden mt-1 font-medium text-xsm'>This field is required</span>
+                                <FieldInput label="Lastname" name="Lastname" onChange={handleInputChange} data={data} errorSpan={invalidFields.Lastname} />
                             </div>
                             <div className="flex flex-col">
-                                <label className="mb-2 text-zinc-600 font-semibold text-xsm">Course</label>
-                                <select name='Course' value={`${data["Course"] ?? ""}`} onChange={handleInputChange} className="form-select cursor-pointer rounded-md focus:outline-none focus:border focus:border-main p-1.5">
-                                    <option value="bsit">BSIT</option>
-                                    <option value="BSIS">BSIS</option>
-                                    <option value="BSANIM">BSANIM</option>
-                                </select>
+                                <SelectField label="Course" name="Course" data={data} onChange={handleInputChange} options={['BSIT', 'BSIS', 'BSANIM']} values={['bsit', 'bsis', 'bsanim']} />
                             </div>
                             <div className="flex flex-col mb-4">
-                                <label className="mb-2 text-zinc-600 font-semibold text-xsm">Year</label>
-                                <select name='Year' value={`${data["Year"] ?? ""}`} onChange={handleInputChange} className="form-select cursor-pointer rounded-md focus:outline-none focus:border focus:border-main p-1.5">
-                                    <option value="1">1st Year</option>
-                                    <option value="2">2nd Year</option>
-                                    <option value="3">3rd Year</option>
-                                    <option value="4">4th Year</option>
-                                </select>
+                                <SelectField label="Year" name="Year" data={data} onChange={handleInputChange} options={['1st Year', '2nd Year', '3rd Year', '4th Year']} values={[1, 2, 3, 4]} />
                             </div>
                             <div className="flex flex-col">
-                                <label className="mb-2 text-zinc-600 font-semibold text-xsm">Remarks</label>
-                                <select name='Remarks' value={`${data["Remarks"] ?? ""}`} onChange={handleInputChange} className="form-select cursor-pointer rounded-md focus:outline-none focus:border focus:border-main p-1.5">
-                                    <option value="old">Old</option>
-                                    <option value="new">New</option>
-                                    <option value="returnee">Returnee</option>
-                                    <option value="transferee">Transferee</option>
-                                </select>
+                                <SelectField label="Remarks" name="Remarks" data={data} onChange={handleInputChange} options={['Old', "New", "Returnee", "Transferee"]} values={["old", "new", "returnee", "transferee"]} />
                             </div>
                         </div> {/*end of second grid basta subaya lang hehe */}
                     </form>
