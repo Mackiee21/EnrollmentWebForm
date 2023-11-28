@@ -13,12 +13,12 @@ function Header({title, filterBy, handleRefresh, fetching}){
                 </div>
             </div>
            <div className='flex gap-3'>
-           <button disabled={fetching} onClick={handleRefresh} className='flex items-center focus:outline-none hover:text-main text-base gap-1 cursor-pointer'>
+           <button disabled={fetching} onClick={handleRefresh} className='flex items-center focus:outline-none hover:text-main text-xsm gap-1 cursor-pointer'>
                     <RefreshCwIcon size={16} />
                     Refresh
                 </button>
-            <label className="text-base tracking-wide mb-0 text-black font-normal">Filter By: 
-                <select className="from-select ms-2 border text-base font-normal py-1.5 ps-3 pe-9 rounded cursor-pointer focus:outline-none focus:bg-outline-main">
+            <label className="text-xsm tracking-wide mb-0 text-black font-normal">Filter By: 
+                <select className="from-select ms-2 border-2 text-base font-normal py-1.5 ps-3 pe-9 rounded cursor-pointer focus:outline-none focus:bg-outline-main">
                         {filterBy.map((filt, i) => {
                             return <option key={i}>{filt}</option>
                         })}

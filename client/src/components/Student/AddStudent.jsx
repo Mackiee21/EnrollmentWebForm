@@ -136,7 +136,7 @@ function AddStudent(){
 
                         <div className='grid grid-cols-2 gap-4'>
                             <div className="flex flex-col">
-                                <FieldInput label="Middle Name" name="MiddleName" onChange={handleInputChange} data={data} />
+                                <FieldInput label="Middle Name" optional name="MiddleName" onChange={handleInputChange} data={data} />
                             </div>
                             <div className="flex flex-col">
                                 <label className="">Image URL</label>
@@ -167,7 +167,7 @@ function AddStudent(){
                             </Button>
                         </div>
                     </div>
-                {duplicate && <MessageBox message="Duplicate Entry" header="Error" handleClose={handleClose} /> }
+                {duplicate && <MessageBox message="Duplicate Entry" header="Failed" handleClose={handleClose} /> }
             </div>}
             {errorFetching && <Retry onRetry={handleSave} />}
             {failed && <Retry text="Back" onRetry={() => setFailed(false)} message="Failed, please verify your inputs and try again" />}

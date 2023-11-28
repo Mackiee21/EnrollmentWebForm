@@ -1,5 +1,5 @@
 import {UserPlusIcon, BookIcon, SearchIcon, Calendar, FolderCheck, Home} from 'lucide-react'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 function Sidebar({ mTop }){
     return(
@@ -7,40 +7,76 @@ function Sidebar({ mTop }){
                <nav className="py-2 px-2">
                     <ul className="tracking-wide text-xsm">
                         <li> {/**wrapper nalng ni hahahhah */}
-                            <Link className='font-medium flex items-center gap-2 lg:hover:bg-neutral-200 hover:text-main py-2.5 px-2 rounded w-full' to="/development">
+                            <NavLink style={({isActive}) => {
+                                return{
+                                    backgroundColor: isActive ? "#077acc": "",
+                                    color: isActive ? "white" : ""
+                                }
+                            }} 
+                            className='font-medium flex items-center gap-2 lg:hover:bg-neutral-200 hover:text-main py-2.5 px-2 rounded w-full' to="/development">
                                 <Home size={17} />
                                 Home
-                            </Link>
+                            </NavLink>
                         </li>
                         <li>
-                            <Link className='font-medium flex items-center gap-2 lg:hover:bg-neutral-200 hover:text-main py-2.5 px-2 rounded' to="/">
+                            <NavLink style={({isActive}) => {
+                                return{
+                                    backgroundColor: isActive ? "#077acc": "",
+                                    color: isActive ? "white" : ""
+                                }
+                            }} 
+                            className='font-medium flex items-center gap-2 lg:hover:bg-neutral-200 hover:text-main py-2.5 px-2 rounded' to="/">
                                 <UserPlusIcon size={17} />
                                 Students
-                            </Link>
+                            </NavLink>
                         </li>
                         <li>
-                            <Link className='font-medium flex items-center gap-2 lg:hover:bg-neutral-200 hover:text-main py-2.5 px-2 rounded-md' to="/development">
+                            <NavLink style={({isActive}) => {
+                                return{
+                                    backgroundColor: isActive ? "#077acc": "",
+                                    color: isActive ? "white" : ""
+                                }
+                            }} 
+                            className='font-medium flex items-center gap-2 lg:hover:bg-neutral-200 hover:text-main py-2.5 px-2 rounded-md' to="/development">
                                 <BookIcon size={17}  />
                                 Subjects
-                            </Link>
+                            </NavLink>
                         </li>
                         <li>
-                            <Link className="font-medium flex items-start gap-2 lg:hover:bg-neutral-200 hover:text-main py-2.5 px-2 rounded" to="/development">
+                            <NavLink style={({isActive}) => {
+                                return{
+                                    backgroundColor: isActive ? "#077acc": "",
+                                    color: isActive ? "white" : ""
+                                }
+                            }} 
+                            className="font-medium flex items-start gap-2 lg:hover:bg-neutral-200 hover:text-main py-2.5 px-2 rounded" to="/development">
                                 <SearchIcon size={18} />
                                 Prerequisites
-                            </Link>
+                            </NavLink>
                         </li>
                         <li>
-                            <Link className="font-medium flex items-center gap-2 lg:hover:bg-neutral-200 hover:text-main py-2.5 px-2 rounded" to="/development">
+                            <NavLink style={({isActive}) => {
+                                return{
+                                    backgroundColor: isActive ? "#077acc": "",
+                                    color: isActive ? "white" : ""
+                                }
+                            }} 
+                            className="font-medium flex items-center gap-2 lg:hover:bg-neutral-200 hover:text-main py-2.5 px-2 rounded" to="/development">
                                 <Calendar size={17} />
                                 Schedules
-                            </Link>
+                            </NavLink>
                         </li>
                         <li>
-                            <Link className="font-medium flex items-center gap-2 lg:hover:bg-neutral-200 hover:text-main py-2.5 px-2 rounded" to="/development">
+                            <NavLink style={({isActive}) => {
+                                return{
+                                    backgroundColor: isActive ? "#077acc": "",
+                                    color: isActive ? "white" : ""
+                                }
+                            }} 
+                            className="font-medium flex items-center gap-2 lg:hover:bg-neutral-200 hover:text-main py-2.5 px-2 rounded" to="/development">
                                 <FolderCheck size={17} />
                                 Enrollment
-                            </Link>
+                            </NavLink>
                         </li>
                     </ul>
                </nav>
