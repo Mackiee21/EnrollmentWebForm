@@ -5,7 +5,7 @@ function Sidebar({ mTop }){
     return(
         <div style={{minHeight: `calc(100dvh - ${mTop}px)` }} className="w-1/6 text-xsm bg-gray-100 fixed left-0 overflow-y-auto overflow-x-hidden">
                <nav className="py-2 px-2">
-                    <ul className="tracking-wide text-xsm">
+                    <ul className="tracking-wide text-sm">
                         <li>
                             <NavLink to="/records/students" style={({isActive}) => {
                                 return{

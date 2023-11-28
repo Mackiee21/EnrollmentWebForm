@@ -12,7 +12,7 @@ function ErrorPage(){
           <p className='font-normal text-lg non-italic mb-2'>{error.statusText || error.message}</p> */}
           <h1 className='font-bold text-2xl'>Developing...</h1>
           <p className='mt-2 mb-3 text-base'>This page is currently under development. Thank you!</p>
-          <Link to='/'><Button text="Back" className="bg-main" iconLeft={<Home size={18} />} /></Link>
+          <Link to='/'><Button text="Home" className="bg-main" iconLeft={<Home size={18} />} /></Link>
         </div>
       );
 }

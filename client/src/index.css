@@ -46,3 +46,30 @@ label{
     @apply mb-2 text-zinc-500 font-semibold text-xsm;
 }
 
+.img-wrapper{
+    position: relative;
+    z-index: 1;
+    @apply rounded;
+}
+.img-wrapper::before{
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 10px double rgb(239 246 255);
+    top: 2rem;
+    right: -2rem;
+    z-index: -1;
+    @apply rounded;
+}
+.img-wrapper::after{
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 10px double rgb(191 219 254);
+    top: -2rem;
+    left: -2rem;
+    z-index: -1;
+    @apply rounded;
+}

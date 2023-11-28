@@ -5,19 +5,19 @@ import { Link } from 'react-router-dom'
 function Header({title, filterBy, handleRefresh, fetching}){
     const classes = "focus:outline-none focus:ring focus:ring-main ";
     return(
-        <div className="flex items-center justify-between w-full pt-3 ps-2 pe-3 pb-1 me-5 mb-2">
-            <div className="text-base font-bold tracking-wide flex items-center gap-3">
+        <div className="flex items-center justify-between w-full pt-3 ps-2 pe-3 pb-1 me-5 mb-1">
+            <div className="text-base font-semibold tracking-wide flex items-center gap-3">
                 <div className='flex items-center gap-1'>
                     <UserPlus size={18} />
                     {title}
                 </div>
             </div>
            <div className='flex gap-3'>
-           <button disabled={fetching} onClick={handleRefresh} className='flex items-center focus:outline-none hover:text-main text-xsm gap-1 cursor-pointer'>
-                    <RefreshCwIcon size={16} />
+           <button disabled={fetching} onClick={handleRefresh} className='flex items-center focus:outline-none hover:text-main text-sm font-medium gap-1 cursor-pointer'>
+                    <RefreshCwIcon size={14} />
                     Refresh
                 </button>
-            <label className="text-xsm tracking-wide mb-0 text-black font-normal">Filter By: 
+            <label className="text-sm tracking-wide mb-0 text-black font-medium">Filter : 
                 <select className="from-select ms-2 border-2 text-base font-normal py-1.5 ps-3 pe-9 rounded cursor-pointer focus:outline-none focus:bg-outline-main">
                         {filterBy.map((filt, i) => {
                             return <option key={i}>{filt}</option>

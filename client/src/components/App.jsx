@@ -9,6 +9,7 @@ import { useRef, useEffect, useState } from 'react';
 import { createBrowserRouter, createRoutesFromElements, RouterProvider, Route, Link, Outlet} from 'react-router-dom'
 import ErrorPage from '../reusable/errorPage';
 import Subject from './Subject/Subject';
+import Contact from './Contact';
 function App(){
    const navBarRef = useRef(null);
 
@@ -30,6 +31,7 @@ function App(){
                     {
                         path: "/records",
                         element: <SidebarRoutes mTop={mTop} />,
+                        errorElement: <ErrorPage />,
                         children:[
                             {
                                 index: true,
@@ -55,6 +57,10 @@ function App(){
                                 element: <Subject />
                             }
                         ]
+                    },
+                    {
+                        path: '/contact',
+                        element: <Contact />
                     },
                 ]
             }
@@ -100,4 +106,5 @@ const StudentRoutes =() => {
         </div>
     );
 }
+//and more routes to come hahahahh
 export default App
