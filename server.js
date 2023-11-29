@@ -2,14 +2,11 @@ const express = require("express")
 const mssql = require("mssql")
 const cors = require("cors")
 const path = require("path")
-const { json } = require("express")
-const { prototype } = require("events")
 
 const conneString = process.env.NODE_ENV === "prod" ? process.env.conneString : require('./devs/dev').serverUrl
-const connectionString = conneString //completely unnecesary mak hehe
 const connectDb = async () => {
     try {
-       await mssql.connect(connectionString)
+       await mssql.connect(conneString)
        console.log("connected and running")
     } catch (error) {
         console.log("error connecting to the database " + error)
@@ -24,11 +21,12 @@ app.use(express.urlencoded({extended: false}))
 
 app.use(express.static(path.join(__dirname, "client", "dist")));
 
-app.get("/student", async (req, res) => {
+app.get("/student/:option", async (req, res) => {
+    const option = req.params.option;
     try {
         const pool = await mssql.connect();
-        const sql = "SELECT * FROM Students";
-        const students = await pool.request().query(sql);
+        const sql = option.toLocaleLowerCase() === "all" ? "SELECT * FROM Students" : "SELECT * FROM STUDENTS WHERE StudentCourse = @option";
+        const students = await pool.request().input('option', mssql.VarChar, option).query(sql);
         res.send(students.recordset);
     } catch (error) {
         console.log("error " + error)
