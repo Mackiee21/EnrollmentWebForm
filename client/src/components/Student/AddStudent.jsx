@@ -119,7 +119,7 @@ function AddStudent(){
            {!errorFetching && !failed && <div className='flex justify-center relative w-full'>
                 <div className='md:w-9/12 lg:w-8/12 my-3 py-7 px-9 bg-gray-50 border border-gray-300 rounded-md shadow shadow-sinc-300'>
                     <form method="post" ref={formRef}>
-                        <h1 className='text-center mb-7 font-black text-xl uppercase tracking-wider text-white bg-main/90 rounded-md shadow shadow-main/70 py-3 px-6'>Student Form</h1>
+                        <h1 className='text-center mb-7 font-black text-xl uppercase tracking-wider text-white/90 bg-gradient-to-r from-main/80 to-main/90 rounded-md shadow shadow-main/70 py-3 px-6'>Student Form</h1>
                         <div className='grid grid-cols-3 gap-2 mb-1'>
                             <div className='col-span-2'>
                                 <div className="flex flex-col mb-4">
