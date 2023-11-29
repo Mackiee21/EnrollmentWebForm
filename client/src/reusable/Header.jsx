@@ -6,7 +6,7 @@ function Header({title, filterBy, handleFilter, handleRefresh, fetching}){
     const classes = "focus:outline-none focus:ring focus:ring-main ";
     return(
         <div className="flex items-center justify-between w-full pt-3 ps-2 pe-3 pb-1 me-5 mb-1">
-            <div className="text-base font-extrabold bg-main/90 text-white py-2 px-4 rounded tracking-wide flex items-center gap-3">
+            <div className="text-base font-extrabold bg-gradient-to-r from-main/80 to-main/95 text-white py-2 px-4 rounded tracking-wide flex items-center gap-3">
                 <div className='flex items-center gap-1'>
                     <UserPlus size={18} />
                     {title}
