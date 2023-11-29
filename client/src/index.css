@@ -38,12 +38,18 @@ body{
     opacity: 0;
     background-color: orange;
 }
-
+.sidebar ul a.active{
+    @apply flex items-center gap-2 py-2.5 px-2 rounded-e-md border-l-8 border-main/50
+    bg-gradient-to-r from-main/80 to-main/90 text-white;
+}
+.sidebar ul a:not(.active){
+    @apply flex items-center gap-2 lg:hover:bg-neutral-200 hover:text-main py-2.5 px-2 rounded-md;
+}
 input[type="text"],
 select,
 input[type="email"],
 input[type="password"]{
-    @apply border-2 border-gray-200 rounded-md form-input rounded-md
+    @apply border-2 border-gray-200 rounded-md form-input
            focus:outline-none focus:border-2 focus:border-main/50 p-1.5;
 }
 select{

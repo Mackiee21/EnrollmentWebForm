@@ -7,61 +7,51 @@ function Sidebar(){
                <nav className="py-2 px-2 sidebar">
                     <ul className="tracking-wide text-sm font-semibold text-gray-600">
                         <li>
-                            <NavLink to="/records/students" style={({isActive}) => {
-                                return{
-                                    backgroundColor: isActive ? "#077acc": "",
-                                    color: isActive ? "white" : ""
-                                }
-                            }} 
-                            className='flex items-center gap-2 lg:hover:bg-neutral-200 hover:text-main py-2.5 px-2 rounded'>
+                            <NavLink to="/records/students"
+                            className={({isActive}) => [
+                                isActive ? "active": ""
+                            ].join(" ")
+                            }>
                                 <UserPlusIcon size={17} />
                                 Students
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to="/records/subjects" style={({isActive}) => {
-                                return{
-                                    backgroundColor: isActive ? "#077acc": "",
-                                    color: isActive ? "white" : ""
-                                }
-                            }} 
-                            className='flex items-center gap-2 lg:hover:bg-neutral-200 hover:text-main py-2.5 px-2 rounded-md'>
+                            <NavLink to="/records/subjects" 
+                            className={({isActive}) => [
+                                isActive ? "active": ""
+                            ].join(" ")
+                            }>
                                 <BookIcon size={17}  />
                                 Subjects
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink style={({isActive}) => {
-                                return{
-                                    backgroundColor: isActive ? "#077acc": "",
-                                    color: isActive ? "white" : ""
-                                }
-                            }} 
-                            className="flex items-start gap-2 lg:hover:bg-neutral-200 hover:text-main py-2.5 px-2 rounded" to="/development">
+                            <NavLink 
+                            className={({isActive}) => [
+                                isActive ? "active": ""
+                            ].join(" ")
+                            } to="/development">
                                 <SearchIcon size={18} />
                                 Prerequisites
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink style={({isActive}) => {
-                                return{
-                                    backgroundColor: isActive ? "#077acc": "",
-                                    color: isActive ? "white" : ""
-                                }
-                            }} 
-                            className="flex items-center gap-2 lg:hover:bg-neutral-200 hover:text-main py-2.5 px-2 rounded" to="/development">
+                            <NavLink 
+                            className={({isActive}) => [
+                                isActive ? "active": ""
+                            ].join(" ")
+                            } to="/development">
                                 <Calendar size={17} />
                                 Schedules
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink style={({isActive}) => {
-                                return{
-                                    backgroundColor: isActive ? "#077acc": "",
-                                    color: isActive ? "white" : ""
-                                }
-                            }} 
-                            className="flex items-center gap-2 lg:hover:bg-neutral-200 hover:text-main py-2.5 px-2 rounded" to="/development">
+                            <NavLink 
+                            className={({isActive}) => [
+                                isActive ? "active": ""
+                            ].join(" ")
+                            } to="/development">
                                 <FolderCheck size={17} />
                                 Enrollment
                             </NavLink>

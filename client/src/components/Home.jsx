@@ -1,6 +1,8 @@
 import HelmetComp from "../reusable/HelmetComp"
+import { NavLink } from 'react-router-dom'
+import Button from '../reusable/Button'
 
-function Home({mTop}){
+function Home(){
     const bgImage = "https://tse4.mm.bing.net/th?id=OIP.08O5tU9nJbMr7ARhosX3hgHaEL&pid=Api&P=0&h=220"
     return(
         <div className="hero w-full sm:h-auto md:h-full border-0 bg-gradient-to-t from-blue-300 to-gray-100 grid sm:grid-cols-1 md:grid-cols-2 justify-center gap-3">
@@ -11,13 +13,14 @@ function Home({mTop}){
                 </div>
            </section>
            <section className="right-section flex flex-col justify-center text-main items-start gap-3">
-                <div className="flex flex-col font-['Saira Extra Condensed', sans-serif] items-start gap-1">
-                    <h1 className="text-7xl font-extrabold">University</h1>
-                    <h2 className="text-3xl ms-2">of Cebu - Banilad Campus</h2>
+                <div className="flex flex-col font-['Saira Extra Condensed', sans-serif] items-start gap-1.5">
+                    <h1 className="text-5xl font-extrabold whitespace-nowrap">Enrollment Web Form</h1>
+                    <h2 className="text-2xl font-medium">University of Cebu - Banilad Campus</h2>
+                    <p></p>
                 </div>
                 <div className="flex items-center gap-1">
                     <a href="https://www.universityofcebu.net/p/university-of-cebu-banilad-campus.html" className="cursor-pointer text-main text-medium font-extrabold border-4 border-transparent hover:border-4 border-dotted hover:border-white py-1 px-4">Learn more &gt;</a>
-                      <button onClick={() => alert("hehe design ragd")} className="bg-main cursor-pointer text-white text-xsm font-bold py-2 px-7 rounded-full hover:bg-main/80">Get Started</button>  
+                      <NavLink to="/records"><Button text="Get Started" className="bg-main px-7 hover:bg-main/90" /></NavLink>
                 </div>
         </section>
         </div>

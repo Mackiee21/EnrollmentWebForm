@@ -44,7 +44,7 @@ app.post("/addStudent",  async (req, res) => {
                         VALUES('${IDNumber}', '${Firstname}', '${Lastname}', '${MiddleName}', '${Course}', '${Year}', '${Remarks}', 'AC', '${ImageUrl}')`;
             const response = await pool.request().query(sql)
             console.log('response', response)          
-                 res.send({success: true, redirectTo: '/' })    
+                 res.send({success: true, redirectTo: '/records/students' })    
         }else{
             //means ID number already exists in the database
             res.send({duplicate: true})
