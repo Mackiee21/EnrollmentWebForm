@@ -70,7 +70,7 @@ function Student(){
                         </tr>
                     </thead>
                     <tbody className='border border-gray-300 text-sm'>
-                        {students.map(student => {
+                        {students.length > 0 && students.map(student => {
                             return(
                                 <tr className='text-start border-b border-gray-300' key={student.StudentIDNumber}>
                                     <td className='px-2 py-3 font-bold tracking-wide'>{student.StudentIDNumber}</td>
