@@ -26,7 +26,6 @@ function Student(){
             return;
         }
         const response = await axios.get(`/student/${option}`);
-        console.log(response)
         setErrorFetching(false)
         if(response.status !== 200){
             

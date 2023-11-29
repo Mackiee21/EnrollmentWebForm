@@ -5,7 +5,7 @@ function Sidebar(){
     return(
         <div className="w-1/6 text-xsm bg-gray-100 sticky left-0 top-0 overflow-y-auto overflow-x-hidden">
                <nav className="py-2 px-2 sidebar">
-                    <ul className="tracking-wide text-sm">
+                    <ul className="tracking-wide text-sm font-semibold text-gray-600">
                         <li>
                             <NavLink to="/records/students" style={({isActive}) => {
                                 return{
@@ -13,7 +13,7 @@ function Sidebar(){
                                     color: isActive ? "white" : ""
                                 }
                             }} 
-                            className='font-medium flex items-center gap-2 lg:hover:bg-neutral-200 hover:text-main py-2.5 px-2 rounded'>
+                            className='flex items-center gap-2 lg:hover:bg-neutral-200 hover:text-main py-2.5 px-2 rounded'>
                                 <UserPlusIcon size={17} />
                                 Students
                             </NavLink>
@@ -25,7 +25,7 @@ function Sidebar(){
                                     color: isActive ? "white" : ""
                                 }
                             }} 
-                            className='font-medium flex items-center gap-2 lg:hover:bg-neutral-200 hover:text-main py-2.5 px-2 rounded-md'>
+                            className='flex items-center gap-2 lg:hover:bg-neutral-200 hover:text-main py-2.5 px-2 rounded-md'>
                                 <BookIcon size={17}  />
                                 Subjects
                             </NavLink>
@@ -37,7 +37,7 @@ function Sidebar(){
                                     color: isActive ? "white" : ""
                                 }
                             }} 
-                            className="font-medium flex items-start gap-2 lg:hover:bg-neutral-200 hover:text-main py-2.5 px-2 rounded" to="/development">
+                            className="flex items-start gap-2 lg:hover:bg-neutral-200 hover:text-main py-2.5 px-2 rounded" to="/development">
                                 <SearchIcon size={18} />
                                 Prerequisites
                             </NavLink>
@@ -49,7 +49,7 @@ function Sidebar(){
                                     color: isActive ? "white" : ""
                                 }
                             }} 
-                            className="font-medium flex items-center gap-2 lg:hover:bg-neutral-200 hover:text-main py-2.5 px-2 rounded" to="/development">
+                            className="flex items-center gap-2 lg:hover:bg-neutral-200 hover:text-main py-2.5 px-2 rounded" to="/development">
                                 <Calendar size={17} />
                                 Schedules
                             </NavLink>
@@ -61,7 +61,7 @@ function Sidebar(){
                                     color: isActive ? "white" : ""
                                 }
                             }} 
-                            className="font-medium flex items-center gap-2 lg:hover:bg-neutral-200 hover:text-main py-2.5 px-2 rounded" to="/development">
+                            className="flex items-center gap-2 lg:hover:bg-neutral-200 hover:text-main py-2.5 px-2 rounded" to="/development">
                                 <FolderCheck size={17} />
                                 Enrollment
                             </NavLink>
