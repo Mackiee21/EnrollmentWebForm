@@ -150,7 +150,7 @@ function AddStudent(){
                                 <FieldInput label="Lastname" name="Lastname" onChange={handleInputChange} data={data} errorSpan={invalidFields.Lastname} />
                             </div>
                             <div className="flex flex-col">
-                                <SelectField label="Course" name="Course" data={data} onChange={handleInputChange} options={['BSIT', 'BSIS', 'BSANIM']} values={['bsit', 'bsis', 'bsanim']} />
+                                <SelectField label="Course" name="Course" data={data} onChange={handleInputChange} options={['BSIT', 'BSIS', 'BSANIM']} values={['BSIT', 'BSIS', 'BSANIM']} />
                             </div>
                             <div className="flex flex-col mb-4">
                                 <SelectField label="Year" name="Year" data={data} onChange={handleInputChange} options={['1st Year', '2nd Year', '3rd Year', '4th Year']} values={[1, 2, 3, 4]} />

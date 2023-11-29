@@ -11,12 +11,13 @@ function Student(){
     const [students, setStudents] = useState([])
     const [fetching, setFetching] = useState(false)
     const [errorFetching, setErrorFetching] = useState(false)
+    const [option, setOption] = useState("all");
 
     useEffect(() => {
-        getStudents();
+        getStudents(option);
     }, [])
 
-    const getStudents = async() => {
+    const getStudents = async(option) => {
       try {
         setErrorFetching(false)
         setFetching(true);
@@ -24,7 +25,7 @@ function Student(){
             setErrorFetching(true) 
             return;
         }
-        const response = await axios.get("/student");
+        const response = await axios.get(`/student/${option}`);
         setErrorFetching(false)
         if(response.status !== 200){
             
@@ -38,15 +39,19 @@ function Student(){
         setErrorFetching(true);
       }
     }
+    const handleFilter = (opt) => {
+        setOption(opt)
+        getStudents(opt)
+    }
 
     const handleRefresh = () => {
-        getStudents(); //wow works on the first try man dayon mak hahahah
+        getStudents(option); //wow works on the first try man dayon mak hahahah
     }
     const filterBy = ['All', 'BSIT', 'BSIS', 'BSN', 'BSCPE']
     return(
         <div className='ps-2'>
            <HelmetComp title="University of Cebu - Students" />
-            <Header title="Students" filterBy={filterBy} handleRefresh={handleRefresh} fetching={fetching} />
+            <Header title="Students" filterBy={filterBy} handleRefresh={handleRefresh} handleFilter={handleFilter} fetching={fetching} />
             {!errorFetching && <div className='overflow-x-auto'>
                 { fetching && <Loading /> }
                { !fetching &&  students.length === 0 &&  <NOData /> }
@@ -65,7 +70,7 @@ function Student(){
                         </tr>
                     </thead>
                     <tbody className='border border-gray-300 text-sm'>
-                        {students.map(student => {
+                        {students && students.map(student => {
                             return(
                                 <tr className='text-start border-b border-gray-300' key={student.StudentIDNumber}>
                                     <td className='px-2 py-3 font-bold tracking-wide'>{student.StudentIDNumber}</td>

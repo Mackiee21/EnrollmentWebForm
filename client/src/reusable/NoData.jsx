@@ -1,6 +1,6 @@
 export default function NOData(){
     return(
-        <div className="text-base tracking-wide font-semibold text-center mt-3 text-gray-600">
+        <div className="text-lg mt-10 font-medium text-center text-gray-400">
             No results found
         </div>
     );

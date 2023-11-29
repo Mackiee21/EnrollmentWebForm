@@ -2,7 +2,7 @@ import { Plus, LucideArrowDownSquare, UserPlus, RefreshCwIcon } from 'lucide-rea
 import Button from './Button';
 import { Link } from 'react-router-dom'
 
-function Header({title, filterBy, handleRefresh, fetching}){
+function Header({title, filterBy, handleFilter, handleRefresh, fetching}){
     const classes = "focus:outline-none focus:ring focus:ring-main ";
     return(
         <div className="flex items-center justify-between w-full pt-3 ps-2 pe-3 pb-1 me-5 mb-1">
@@ -18,7 +18,7 @@ function Header({title, filterBy, handleRefresh, fetching}){
                     Refresh
                 </button>
             <label className="text-sm tracking-wide mb-0 text-black font-medium">Filter : 
-                <select className="from-select ms-2 border-2 text-base font-normal py-1.5 ps-3 pe-9 rounded cursor-pointer focus:outline-none focus:bg-outline-main">
+                <select onChange={(e) => handleFilter(e.target.value)} className="from-select ms-2 border-2 text-base font-normal py-1.5 ps-3 pe-9 rounded cursor-pointer focus:outline-none focus:bg-outline-main">
                         {filterBy.map((filt, i) => {
                             return <option key={i}>{filt}</option>
                         })}

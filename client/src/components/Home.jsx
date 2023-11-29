@@ -10,10 +10,10 @@ function Home({mTop}){
                     <img className="w-full h-auto object-cover object-center rounded" src="https://tse1.mm.bing.net/th?id=OIP.SsmuLDW1vwfaYZSla_MMKgHaGN&pid=Api&P=0&h=220" alt="" />
                 </div>
            </section>
-           <section className="right-section flex flex-col justify-center text-main items-start gap-4">
-                <div className="flex flex-col items-start gap-1">
-                    <h1 className="text-7xl tracking-wide font-extrabold">University</h1>
-                    <h2 className="text-3xl">of Cebu - Banilad Campus</h2>
+           <section className="right-section flex flex-col justify-center text-main items-start gap-3">
+                <div className="flex flex-col font-['Saira Extra Condensed', sans-serif] items-start gap-1">
+                    <h1 className="text-7xl font-extrabold">University</h1>
+                    <h2 className="text-3xl ms-2">of Cebu - Banilad Campus</h2>
                 </div>
                 <div className="flex items-center gap-1">
                     <a href="https://www.universityofcebu.net/p/university-of-cebu-banilad-campus.html" className="cursor-pointer text-main text-medium font-extrabold border-4 border-transparent hover:border-4 border-dotted hover:border-white py-1 px-4">Learn more &gt;</a>
