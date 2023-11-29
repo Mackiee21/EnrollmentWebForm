@@ -7,7 +7,6 @@ import Retry from '../../reusable/Retry';
 import HelmetComp from '../../reusable/HelmetComp';
 import FieldInput from '../../reusable/FieldInput';
 import SelectField from '../../reusable/SelectField';
-import Header from '../../reusable/Header';
 
 function AddStudent(){
     const navigate = useNavigate()
