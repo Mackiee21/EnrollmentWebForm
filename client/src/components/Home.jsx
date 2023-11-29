@@ -3,7 +3,7 @@ import HelmetComp from "../reusable/HelmetComp"
 function Home({mTop}){
     const bgImage = "https://tse4.mm.bing.net/th?id=OIP.08O5tU9nJbMr7ARhosX3hgHaEL&pid=Api&P=0&h=220"
     return(
-        <div style={{height: `calc(100dvh - ${mTop + 2}px)`}} className="border-0 bg-gradient-to-t from-blue-300 to-gray-100 grid sm:grid-cols-1 md:grid-cols-2 justify-center gap-3">
+        <div className="hero w-full sm:h-auto md:h-full border-0 bg-gradient-to-t from-blue-300 to-gray-100 grid sm:grid-cols-1 md:grid-cols-2 justify-center gap-3">
             <HelmetComp title="University of Cebu - Home" />
            <section className="left-section  flex items-center justify-center">
                 <div className="img-wrapper w-2/3 max-w-md shadow-md">

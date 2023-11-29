@@ -1,10 +1,10 @@
 import {UserPlusIcon, BookIcon, SearchIcon, Calendar, FolderCheck, Home} from 'lucide-react'
 import { NavLink } from 'react-router-dom'
 
-function Sidebar({ mTop }){
+function Sidebar(){
     return(
-        <div style={{minHeight: `calc(100dvh - ${mTop}px)` }} className="w-1/6 text-xsm bg-gray-100 fixed left-0 overflow-y-auto overflow-x-hidden">
-               <nav className="py-2 px-2">
+        <div className="w-1/6 text-xsm bg-gray-100 sticky left-0 top-0 overflow-y-auto overflow-x-hidden">
+               <nav className="py-2 px-2 sidebar">
                     <ul className="tracking-wide text-sm">
                         <li>
                             <NavLink to="/records/students" style={({isActive}) => {

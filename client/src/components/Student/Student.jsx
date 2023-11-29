@@ -44,7 +44,7 @@ function Student(){
     }
     const filterBy = ['All', 'BSIT', 'BSIS', 'BSN', 'BSCPE']
     return(
-        <div className='w-full px-3'>
+        <div className='ps-2'>
            <HelmetComp title="University of Cebu - Students" />
             <Header title="Students" filterBy={filterBy} handleRefresh={handleRefresh} fetching={fetching} />
             {!errorFetching && <div className='overflow-x-auto'>

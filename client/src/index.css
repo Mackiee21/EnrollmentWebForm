@@ -31,7 +31,13 @@ body{
 }
 .nav-header ul a.active{
     @apply text-main;
+    opacity: 1;
 }
+.nav-header ul a.transition{
+    opacity: 0;
+    background-color: orange;
+}
+
 input[type="text"],
 select,
 input[type="email"],

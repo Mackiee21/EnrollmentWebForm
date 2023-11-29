@@ -1,12 +1,12 @@
-import { forwardRef } from 'react';
+
 import { NavLink } from 'react-router-dom'
 import { LogOut, Home, PhoneIcon, Database } from 'lucide-react'
 import Button from '../reusable/Button';
 
-function NavBar(_, ref){
+function NavBar(){
     const classes = "shadow-md shadow-header/50 bg-header text-white";
     return(
-        <div ref={ref} className="flex align-center bg-gray-100 justify-between py-2 px-5 sticky top-0 z-50 
+        <div className="flex align-center bg-gray-100 justify-between py-2 px-5 sticky top-0 z-50 
         border-b-2">
             <div className="font-extrabold text-lg text-main tracking-wide flex items-center gap-2">
                 <div className='w-10 rounded-full border-2 border-gray-300'>
@@ -16,8 +16,9 @@ function NavBar(_, ref){
             </div>
            <nav className='nav-header flex gap-6 items-center'>
                 <ul className="flex text-sm gap-5">
-                    <NavLink className={({isActive}) => [
-                        isActive ? "active" : ""
+                    <NavLink className={({isActive, isPending, isTransitioning}) => [
+                        isActive ? "active" : "",
+                        isTransitioning ? "transition" : ""
                         ].join(" ")
                     } 
                     to="/">
@@ -48,4 +49,4 @@ function NavBar(_, ref){
     );
 }
 
-export default forwardRef(NavBar)
+export default NavBar

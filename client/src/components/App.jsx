@@ -5,32 +5,25 @@ import Sidebar from './Sidebar';
 import NavBar from './NavBar';
 import Home from './Home'
 import RedirectUser from './RedirectUser'
-import { useRef, useEffect, useState } from 'react';
 import { createBrowserRouter, createRoutesFromElements, RouterProvider, Route, Link, Outlet} from 'react-router-dom'
 import ErrorPage from '../reusable/errorPage';
 import Subject from './Subject/Subject';
 import Contact from './Contact';
 function App(){
-   const navBarRef = useRef(null);
-
-   const [mTop, setMTop] = useState(0);
-    const getNavHeight = () => {
-        return navBarRef.current.clientHeight;
-    }
     const router = createBrowserRouter([
             {
                 path: '/',
-                element: <MainRoutes mTop={mTop} navBarRef={navBarRef} />,
+                element: <MainRoutes  />,
                 errorElement: <ErrorPage />,
                 children:[
                     {
                         index: true,
-                        element: <Home mTop={mTop} />
+                        element: <Home />
 
                     },
                     {
                         path: "/records",
-                        element: <SidebarRoutes mTop={mTop} />,
+                        element: <SidebarRoutes />,
                         errorElement: <ErrorPage />,
                         children:[
                             {
@@ -66,32 +59,30 @@ function App(){
             }
         ]
     )
-
-    useEffect(() => {
-       setMTop(getNavHeight());
-    }, []);
-
    return(
-    <div className='m-0 p-0 box-border bg-gray-50 h-screen max-h-screen overflow-x-hidden overflow-y-auto'>
-        <RouterProvider router={router} />
+    <div className='m-0 p-0 box-border bg-gray-50 h-screen max-h-screen'>
+            <RouterProvider router={router} />
     </div>
    );
 }
-const MainRoutes = ({mTop, navBarRef}) => {
+const MainRoutes = () => {
     return(
-        <div>
-             <NavBar ref={navBarRef} />
-            <div style={{height: `calc(100dvh - ${mTop + 4}px)`}}>
+        <div className='flex flex-col w-full h-screen'>
+             <div className=''>
+                <NavBar />
+             </div>
+             {/**flex-1 means take the reaming space sa screen thank you */}
+            <div className='flex-1  w-full overflow-y-auto'>
                 <Outlet />
             </div>
         </div>
     );
 }
-const  SidebarRoutes = ({ mTop }) => {
+const  SidebarRoutes = () => {
     return(
-        <div className="flex ps-content"> 
-            <Sidebar mTop={mTop} />
-            <div className='w-full  bg-zinc-50'>
+        <div className="flex w-full h-full"> 
+            <Sidebar />
+            <div className='w-full flex-1 bg-zinc-50 overflow-y-auto' style={{scrollbarGutter: "stable"}}>
                 <Outlet />
             </div>
         </div>
